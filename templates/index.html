@@ -73,6 +73,40 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Añadir después de la sección de First y Follow -->
+
+                    <div class="results-section">
+                        <h3 class="results-title">
+                            <i class="fas fa-table"></i> Tabla de Análisis Predictivo LL(1)
+                        </h3>
+                        {% if tabla_predictiva %}
+                        <div class="predictive-table-container">
+                            <table class="predictive-table">
+                                <thead>
+                                    <tr>
+                                        <th>Variable</th>
+                                        {% for terminal in tabla_predictiva.0.producciones.keys() %}
+                                        <th>{{ terminal }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for fila in tabla_predictiva %}
+                                    <tr>
+                                        <td class="variable-cell">{{ fila.variable }}</td>
+                                        {% for produccion in fila.producciones.values() %}
+                                        <td>{% if produccion %}{{ produccion }}{% else %}<span class="empty-cell">-</span>{% endif %}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <p>No hay datos disponibles para mostrar la tabla predictiva.</p>
+                        {% endif %}
+                    </div>
                     
                     <div class="results-section">
                         <h3 class="results-title">
